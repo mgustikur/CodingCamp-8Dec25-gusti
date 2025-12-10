@@ -37,10 +37,12 @@ h1 {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
+    flex-wrap: wrap;
 }
 
 #todoInput {
     flex: 1;
+    min-width: 200px;
     padding: 12px;
     border: 2px solid #ddd;
     border-radius: 8px;
@@ -93,6 +95,7 @@ h1 {
     font-weight: 600;
     color: #7f8c8d;
     transition: all 0.3s;
+    font-size: 12px;
 }
 
 .filter-btn:hover {
@@ -217,14 +220,115 @@ h1 {
     display: none;
 }
 
-@media (max-width: 600px) {
-    .list-header,
+/* Responsive Design untuk Mobile */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+        align-items: flex-start;
+        padding-top: 20px;
+    }
+
+    .todo-wrapper {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+
+    .input-section {
+        flex-direction: column;
+    }
+
+    #todoInput {
+        width: 100%;
+        min-width: 100%;
+    }
+
+    #dateInput {
+        width: 100%;
+    }
+
+    #addBtn {
+        width: 100%;
+        padding: 12px;
+    }
+
+    .filter-section {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .filter-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .desktop-only {
+        display: none;
+    }
+
     .todo-item {
         grid-template-columns: 1fr;
-        text-align: center;
+        gap: 12px;
+        padding: 15px;
     }
-    
+
+    .task-text {
+        font-size: 15px;
+        font-weight: 500;
+        padding-bottom: 8px;
+        border-bottom: 1px solid #ecf0f1;
+    }
+
+    .due-date {
+        font-size: 13px;
+        display: flex;
+        align-items: center;
+    }
+
+    .due-date::before {
+        content: "📅 ";
+        margin-right: 5px;
+    }
+
+    .status-badge {
+        justify-self: start;
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
     .actions {
-        justify-content: center;
+        justify-content: stretch;
+        gap: 8px;
+    }
+
+    .action-btn {
+        flex: 1;
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    #todoList {
+        max-height: 500px;
+    }
+}
+
+@media (max-width: 480px) {
+    .todo-wrapper {
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    h1 {
+        font-size: 1.3em;
+    }
+
+    #todoInput,
+    #dateInput,
+    #addBtn {
+        font-size: 16px; /* Mencegah zoom di iOS */
     }
 }
