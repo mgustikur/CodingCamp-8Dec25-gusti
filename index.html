@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="todo-wrapper">
+            <h1>Todo List</h1>
+            
+            <div class="input-section">
+                <input type="text" id="todoInput" placeholder="Add a todo...">
+                <input type="date" id="dateInput">
+                <button id="addBtn">+</button>
+            </div>
+
+            <div class="filter-section">
+                <button class="filter-btn active" data-filter="all">ALL</button>
+                <button class="filter-btn" data-filter="pending">PENDING</button>
+                <button class="filter-btn" data-filter="completed">COMPLETED</button>
+            </div>
+
+            <div class="list-header">
+                <span>TASK</span>
+                <span>DUE DATE</span>
+                <span>STATUS</span>
+                <span>ACTIONS</span>
+            </div>
+
+            <ul id="todoList"></ul>
+
+            <p id="emptyMessage">No task found</p>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
