@@ -16,7 +16,7 @@ body {
 
 .container {
     width: 100%;
-    max-width: 700px;
+    max-width: 900px;
 }
 
 .todo-wrapper {
@@ -31,6 +31,52 @@ h1 {
     color: #2c3e50;
     margin-bottom: 30px;
     font-size: 2em;
+}
+
+/* Stats Section */
+.stats-section {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: white;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    transition: transform 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+}
+
+.stat-icon {
+    font-size: 32px;
+    opacity: 0.9;
+}
+
+.stat-content {
+    flex: 1;
+}
+
+.stat-label {
+    font-size: 11px;
+    font-weight: 600;
+    opacity: 0.9;
+    letter-spacing: 0.5px;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    margin-top: 5px;
 }
 
 .input-section {
@@ -105,6 +151,43 @@ h1 {
 .filter-btn.active {
     background: #667eea;
     color: white;
+}
+
+/* Search and Delete All Section */
+.search-delete-section {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+#searchInput {
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    transition: border 0.3s;
+}
+
+#searchInput:focus {
+    border-color: #667eea;
+}
+
+.delete-all-btn {
+    padding: 12px 20px;
+    background: #e74c3c;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+    white-space: nowrap;
+}
+
+.delete-all-btn:hover {
+    background: #c0392b;
 }
 
 .list-header {
@@ -237,6 +320,24 @@ h1 {
         margin-bottom: 20px;
     }
 
+    .stats-section {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin-bottom: 20px;
+    }
+
+    .stat-card {
+        padding: 15px;
+    }
+
+    .stat-icon {
+        font-size: 28px;
+    }
+
+    .stat-value {
+        font-size: 24px;
+    }
+
     .input-section {
         flex-direction: column;
     }
@@ -264,6 +365,19 @@ h1 {
         width: 100%;
         padding: 12px;
         font-size: 14px;
+    }
+
+    .search-delete-section {
+        flex-direction: column;
+    }
+
+    #searchInput {
+        width: 100%;
+    }
+
+    .delete-all-btn {
+        width: 100%;
+        padding: 12px;
     }
 
     .desktop-only {
@@ -328,7 +442,8 @@ h1 {
 
     #todoInput,
     #dateInput,
-    #addBtn {
-        font-size: 16px; /* Mencegah zoom di iOS */
+    #addBtn,
+    #searchInput {
+        font-size: 16px;
     }
 }

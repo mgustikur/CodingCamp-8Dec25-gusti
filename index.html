@@ -11,6 +11,30 @@
         <div class="todo-wrapper">
             <h1>Todo List</h1>
             
+            <div class="stats-section">
+                <div class="stat-card">
+                    <div class="stat-icon">📋</div>
+                    <div class="stat-content">
+                        <div class="stat-label">TOTAL TASKS</div>
+                        <div class="stat-value" id="totalTasks">0</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div class="stat-content">
+                        <div class="stat-label">COMPLETED</div>
+                        <div class="stat-value" id="completedTasks">0</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⏳</div>
+                    <div class="stat-content">
+                        <div class="stat-label">PENDING</div>
+                        <div class="stat-value" id="pendingTasks">0</div>
+                    </div>
+                </div>
+            </div>
+            
             <div class="input-section">
                 <input type="text" id="todoInput" placeholder="Add a todo...">
                 <input type="date" id="dateInput">
@@ -21,6 +45,11 @@
                 <button class="filter-btn active" data-filter="all">ALL</button>
                 <button class="filter-btn" data-filter="pending">PENDING</button>
                 <button class="filter-btn" data-filter="completed">COMPLETED</button>
+            </div>
+
+            <div class="search-delete-section">
+                <input type="text" id="searchInput" placeholder="Search tasks...">
+                <button id="deleteAllBtn" class="delete-all-btn">Delete All</button>
             </div>
 
             <div class="list-header desktop-only">
