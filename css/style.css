@@ -14,6 +14,19 @@ body {
     padding: 20px;
 }
 
+/* Screen reader only class */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
 .container {
     width: 100%;
     max-width: 900px;
@@ -26,7 +39,7 @@ body {
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
 }
 
-h1 {
+header h1 {
     text-align: center;
     color: #2c3e50;
     margin-bottom: 30px;
@@ -125,6 +138,11 @@ h1 {
     background: #5568d3;
 }
 
+#addBtn:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
+}
+
 .filter-section {
     display: flex;
     gap: 10px;
@@ -146,6 +164,11 @@ h1 {
 
 .filter-btn:hover {
     background: #d5dbdb;
+}
+
+.filter-btn:focus {
+    outline: 2px solid #667eea;
+    outline-offset: 2px;
 }
 
 .filter-btn.active {
@@ -188,6 +211,11 @@ h1 {
 
 .delete-all-btn:hover {
     background: #c0392b;
+}
+
+.delete-all-btn:focus {
+    outline: 2px solid #e74c3c;
+    outline-offset: 2px;
 }
 
 .list-header {
@@ -274,6 +302,11 @@ h1 {
     transition: all 0.3s;
 }
 
+.action-btn:focus {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
 .complete-btn {
     background: #27ae60;
     color: white;
@@ -315,7 +348,7 @@ h1 {
         padding: 20px;
     }
 
-    h1 {
+    header h1 {
         font-size: 1.5em;
         margin-bottom: 20px;
     }
@@ -436,7 +469,7 @@ h1 {
         border-radius: 10px;
     }
 
-    h1 {
+    header h1 {
         font-size: 1.3em;
     }
 

@@ -3,67 +3,115 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A simple and responsive todo list application">
     <title>Todo List</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="todo-wrapper">
-            <h1>Todo List</h1>
+    <main class="container">
+        <section class="todo-wrapper">
+            <header>
+                <h1>Todo List</h1>
+            </header>
             
-            <div class="stats-section">
-                <div class="stat-card">
-                    <div class="stat-icon">📋</div>
+            <section class="stats-section" aria-label="Task Statistics">
+                <article class="stat-card">
+                    <div class="stat-icon" aria-hidden="true">📋</div>
                     <div class="stat-content">
-                        <div class="stat-label">TOTAL TASKS</div>
-                        <div class="stat-value" id="totalTasks">0</div>
+                        <h2 class="stat-label">TOTAL TASKS</h2>
+                        <p class="stat-value" id="totalTasks">0</p>
                     </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">✅</div>
+                </article>
+                <article class="stat-card">
+                    <div class="stat-icon" aria-hidden="true">✅</div>
                     <div class="stat-content">
-                        <div class="stat-label">COMPLETED</div>
-                        <div class="stat-value" id="completedTasks">0</div>
+                        <h2 class="stat-label">COMPLETED</h2>
+                        <p class="stat-value" id="completedTasks">0</p>
                     </div>
-                </div>
-                <div class="stat-card">
-                    <div class="stat-icon">⏳</div>
+                </article>
+                <article class="stat-card">
+                    <div class="stat-icon" aria-hidden="true">⏳</div>
                     <div class="stat-content">
-                        <div class="stat-label">PENDING</div>
-                        <div class="stat-value" id="pendingTasks">0</div>
+                        <h2 class="stat-label">PENDING</h2>
+                        <p class="stat-value" id="pendingTasks">0</p>
                     </div>
-                </div>
-            </div>
+                </article>
+            </section>
             
-            <div class="input-section">
-                <input type="text" id="todoInput" placeholder="Add a todo...">
-                <input type="date" id="dateInput">
-                <button id="addBtn">+</button>
+            <section class="input-section" aria-label="Add New Task">
+                <label for="todoInput" class="sr-only">Task description</label>
+                <input 
+                    type="text" 
+                    id="todoInput" 
+                    placeholder="Add a todo..."
+                    aria-label="Enter task description"
+                    required
+                >
+                
+                <label for="dateInput" class="sr-only">Due date</label>
+                <input 
+                    type="date" 
+                    id="dateInput"
+                    aria-label="Select due date"
+                    required
+                >
+                
+                <button 
+                    id="addBtn" 
+                    aria-label="Add new task"
+                    type="button"
+                >+</button>
+            </section>
+
+            <nav class="filter-section" aria-label="Filter tasks">
+                <button 
+                    class="filter-btn active" 
+                    data-filter="all"
+                    aria-label="Show all tasks"
+                    aria-pressed="true"
+                >ALL</button>
+                <button 
+                    class="filter-btn" 
+                    data-filter="pending"
+                    aria-label="Show pending tasks"
+                    aria-pressed="false"
+                >PENDING</button>
+                <button 
+                    class="filter-btn" 
+                    data-filter="completed"
+                    aria-label="Show completed tasks"
+                    aria-pressed="false"
+                >COMPLETED</button>
+            </nav>
+
+            <section class="search-delete-section" aria-label="Search and manage tasks">
+                <label for="searchInput" class="sr-only">Search tasks</label>
+                <input 
+                    type="search" 
+                    id="searchInput" 
+                    placeholder="Search tasks..."
+                    aria-label="Search for tasks"
+                >
+                <button 
+                    id="deleteAllBtn" 
+                    class="delete-all-btn"
+                    aria-label="Delete all tasks"
+                    type="button"
+                >Delete All</button>
+            </section>
+
+            <div class="list-header desktop-only" role="row">
+                <span role="columnheader">TASK</span>
+                <span role="columnheader">DUE DATE</span>
+                <span role="columnheader">STATUS</span>
+                <span role="columnheader">ACTIONS</span>
             </div>
 
-            <div class="filter-section">
-                <button class="filter-btn active" data-filter="all">ALL</button>
-                <button class="filter-btn" data-filter="pending">PENDING</button>
-                <button class="filter-btn" data-filter="completed">COMPLETED</button>
-            </div>
+            <ul id="todoList" role="list" aria-label="Todo items"></ul>
 
-            <div class="search-delete-section">
-                <input type="text" id="searchInput" placeholder="Search tasks...">
-                <button id="deleteAllBtn" class="delete-all-btn">Delete All</button>
-            </div>
-
-            <div class="list-header desktop-only">
-                <span>TASK</span>
-                <span>DUE DATE</span>
-                <span>STATUS</span>
-                <span>ACTIONS</span>
-            </div>
-
-            <ul id="todoList"></ul>
-
-            <p id="emptyMessage">No task found</p>
-        </div>
-    </div>
+            <p id="emptyMessage" role="status" aria-live="polite">No task found</p>
+        </section>
+    </main>
 
     <script src="js/script.js"></script>
 </body>

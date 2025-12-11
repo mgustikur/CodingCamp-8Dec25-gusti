@@ -31,11 +31,13 @@ function addTodo() {
     
     if (task === '') {
         alert('Please enter a task!');
+        todoInput.focus();
         return;
     }
     
     if (dueDate === '') {
         alert('Please select a due date!');
+        dateInput.focus();
         return;
     }
     
@@ -51,11 +53,26 @@ function addTodo() {
     dateInput.value = '';
     
     renderTodos();
+    
+    // Announce to screen readers
+    emptyMessage.textContent = `Task "${task}" added successfully`;
+    setTimeout(() => {
+        emptyMessage.textContent = 'No task found';
+    }, 2000);
 }
 
 function deleteTodo(id) {
+    const todo = todos.find(t => t.id === id);
+    const taskName = todo ? todo.task : 'Task';
+    
     todos = todos.filter(todo => todo.id !== id);
     renderTodos();
+    
+    // Announce to screen readers
+    emptyMessage.textContent = `${taskName} deleted`;
+    setTimeout(() => {
+        emptyMessage.textContent = 'No task found';
+    }, 2000);
 }
 
 function deleteAllTodos() {
@@ -67,6 +84,9 @@ function deleteAllTodos() {
     if (confirm('Are you sure you want to delete all tasks?')) {
         todos = [];
         renderTodos();
+        
+        // Announce to screen readers
+        emptyMessage.textContent = 'All tasks deleted';
     }
 }
 
@@ -75,6 +95,13 @@ function toggleComplete(id) {
     if (todo) {
         todo.completed = !todo.completed;
         renderTodos();
+        
+        // Announce to screen readers
+        const status = todo.completed ? 'completed' : 'pending';
+        emptyMessage.textContent = `Task marked as ${status}`;
+        setTimeout(() => {
+            emptyMessage.textContent = 'No task found';
+        }, 2000);
     }
 }
 
@@ -118,22 +145,33 @@ function renderTodos() {
     emptyMessage.classList.add('hidden');
     
     todoList.innerHTML = filteredTodos.map(todo => `
-        <li class="todo-item ${todo.completed ? 'completed' : ''}">
+        <li class="todo-item ${todo.completed ? 'completed' : ''}" role="listitem">
             <span class="task-text">${todo.task}</span>
-            <span class="due-date">${formatDate(todo.dueDate)}</span>
-            <span class="status-badge ${todo.completed ? 'status-completed' : 'status-pending'}">
+            <time class="due-date" datetime="${todo.dueDate}">${formatDate(todo.dueDate)}</time>
+            <span class="status-badge ${todo.completed ? 'status-completed' : 'status-pending'}" role="status">
                 ${todo.completed ? 'Completed' : 'Pending'}
             </span>
             <div class="actions">
-                <button class="action-btn complete-btn" onclick="toggleComplete(${todo.id})">
+                <button 
+                    class="action-btn complete-btn" 
+                    onclick="toggleComplete(${todo.id})"
+                    aria-label="${todo.completed ? 'Mark as pending' : 'Mark as completed'}"
+                    type="button"
+                >
                     ${todo.completed ? '↩' : '✓'}
                 </button>
-                <button class="action-btn delete-btn" onclick="deleteTodo(${todo.id})">✕</button>
+                <button 
+                    class="action-btn delete-btn" 
+                    onclick="deleteTodo(${todo.id})"
+                    aria-label="Delete task"
+                    type="button"
+                >✕</button>
             </div>
         </li>
     `).join('');
 }
 
+// Event Listeners
 addBtn.addEventListener('click', addTodo);
 
 todoInput.addEventListener('keypress', (e) => {
@@ -144,8 +182,12 @@ todoInput.addEventListener('keypress', (e) => {
 
 filterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-        filterBtns.forEach(b => b.classList.remove('active'));
+        filterBtns.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-pressed', 'false');
+        });
         btn.classList.add('active');
+        btn.setAttribute('aria-pressed', 'true');
         currentFilter = btn.dataset.filter;
         renderTodos();
     });
@@ -158,4 +200,5 @@ searchInput.addEventListener('input', (e) => {
 
 deleteAllBtn.addEventListener('click', deleteAllTodos);
 
+// Initial render
 renderTodos();
